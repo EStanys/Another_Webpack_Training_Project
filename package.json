@@ -1,0 +1,26 @@
+{
+  "name": "another_webpack_project",
+  "version": "1.0.0",
+  "description": "now we test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EStanys/Another_Webpack_Training_Project.git"
+  },
+  "keywords": [
+    "webpack"
+  ],
+  "author": "E.S.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EStanys/Another_Webpack_Training_Project/issues"
+  },
+  "homepage": "https://github.com/EStanys/Another_Webpack_Training_Project#readme",
+  "devDependencies": {
+    "webpack": "^5.37.1",
+    "webpack-cli": "^4.7.0"
+  }
+}
