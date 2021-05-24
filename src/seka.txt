@@ -28,6 +28,26 @@ module.exports = {
   plugins: [new HtmlWebpackPlugin()],
 };
 
+susitvarkom output:
+output: { filename: "bundle.js", path: path.resolve(__dirname, "dist"), clean: true }
+
+
+7. CSS  - pluginus instaliuojam: https://webpack.js.org/guides/asset-management/#loading-css
+npm install --save-dev style-loader css-loader
+
+Babel
+Dev server
+
+
+
+
+IMG
+
+
+
+
+
+
 
 
 
