@@ -61,7 +61,25 @@ module: {
   devtool: "source-map", // galima matyti is kurio failo koks kodas atejo(consol.log'e tarkim, kad nerodytu kad atejo is main js)
 
 
-Dev server
+10. Dev server isirasom i webPack.dev.js faila: https://webpack.js.org/configuration/dev-server/#root
+
+npm install --save-dev webpack-dev-server
+
+const path = require('path');
+
+module.exports = {
+  //...
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000,
+  },
+};
+scripte prirasyti "serve", pasidarom, kad 'npm run serve' paleistu localu serveri darbui:
+
+"serve": "webpack serve --config webpack.dev.js --open", tada galesim atsidaryti per npm run serve komanda
+
+kad atidaryti serveri naudojam: npx webpack serve --open
 
 
 

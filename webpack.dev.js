@@ -3,20 +3,27 @@ const HtmlWebpackPlugin = require("html-webpack-plugin"); // iskvieciam plugina 
 
 module.exports = {
   mode: "development",
+  devtool: "source-map", // galima matyti is kurio failo koks kodas atejo(consol.log'e tarkim, kad nerodytu kad atejo is main js)
   entry: {
     // kuri faila paims webpackas kaip pagrindini
     main: path.resolve(__dirname, "./src/app.js"), //main: path.resolve(__dirname, - gaunam kelia musu kompiuteri nuo pat pradzios kur yra musu failas. Galima butu ir rankiniu budu nurodyt. PAgal nutylejima imtu webpack.config.js faila, jei toki turetume sukure ir nesplitine i dev ir build
   },
   output: { filename: "bundle.js", path: path.resolve(__dirname, "dist"), clean: true }, // clean isvalo pries tai buvusia direktorija
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    port: 8080,
+  },
   module: {
     rules: [
+      //css loader
       {
         test: /\.css$/i, //pritaikkm.css failams
         use: ["style-loader", "css-loader"], // uzkraunam css
       },
+      // babel loader
       {
-        test: /\.m?js$/,
-        exclude: /(node_modules|bower_components)/,
+        test: /\.js$/,
+        exclude: /node_modules/,
         use: {
           loader: "babel-loader",
           options: {
