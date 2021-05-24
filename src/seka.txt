@@ -1,4 +1,9 @@
-1. instaliuojam webPack: npm install webpack webpack-cli --save-dev  (cli - command line interface)
+1. Pasikuriam nauja projekta, prisidedam git ir github
+bent vienas modulinis js failas su kazkokiu funkcionalumu + index.js
+
+2. Inicializuoti npm
+
+instaliuojam webPack: npm install webpack webpack-cli --save-dev  (cli - command line interface)
 
 2. paruosimas produkcijai - sugeneruojam optimalius failus sujungiant i viena ir pa.:
 komanda: npx webpack --mode production
