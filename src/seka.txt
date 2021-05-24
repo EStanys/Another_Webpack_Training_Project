@@ -5,13 +5,17 @@ bent vienas modulinis js failas su kazkokiu funkcionalumu + index.js
 
 3. Instaliuojam webPack: npm install webpack webpack-cli --save-dev  (cli - command line interface)
 
-4. Susikuriam .gitignore faila ir i ji irasom node_module, kad sio failo gitas nesektu
+4. Susikuriam .gitignore faila ir i ji irasom node_module, ir dist kad siu failu gitas nesektu
 
-2. paruosimas produkcijai - sugeneruojam optimalius failus sujungiant i viena ir pa.:
+5. Pridedam webpack konfiguracijos faila: webpack.dev.js
+Pakeiciam scripta, kad start script'as paleidzia dev konfiguracija
+"start: : "webpack --config  webpack.dev.js"
+
+
+
+2. Paruosimas produkcijai - sugeneruojam optimalius failus sujungiant i viena ir pa.:
 komanda: npx webpack --mode production
 
-sukompiliavimas kurimui (development mode) - rezimas kai norim matyti koda ir su juo dibti:
-npx webpack --mode development
 
 pasidarem skriptus dev build ir start
 
