@@ -56,6 +56,10 @@ module: {
   ]
 }
 
+9.  I module.exports = { // irasom devtool:"source-map"
+  mode: "development", 
+  devtool: "source-map", // galima matyti is kurio failo koks kodas atejo(consol.log'e tarkim, kad nerodytu kad atejo is main js)
+
 
 Dev server
 
