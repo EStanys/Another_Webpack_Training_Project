@@ -1,4 +1,5 @@
 const path = require("path"); // node modulis dirbti su keliais iki failu
+const HtmlWebpackPlugin = require("html-webpack-plugin"); // iskvieciam plugina html generuoti automatiskai kad butu galima
 
 module.exports = {
   mode: "development",
@@ -8,5 +9,9 @@ module.exports = {
   },
   output: {},
   module: {},
-  plugins: [],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "/src/html/template.html", // nurodom kelia is kur pasiimt template pagal kuri kurs html faila dist foldery
+    }),
+  ],
 };

@@ -11,6 +11,25 @@ bent vienas modulinis js failas su kazkokiu funkcionalumu + index.js
 Pakeiciam scripta, kad start script'as paleidzia dev konfiguracija
 "start: : "webpack --config  webpack.dev.js"
 
+6. Instaliuojam Html generavimo plugin is webpack: https://webpack.js.org/plugins/html-webpack-plugin/:
+npm install --save-dev html-webpack-plugin
+
+Basic Usage: (webpack.dev.js faile) inicijuojam plugina confige ir nurodom jam naudoti musu template.html
+
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+
+module.exports = {
+  entry: 'index.js',
+  output: {
+    path: path.resolve(__dirname, './dist'),
+    filename: 'index_bundle.js',
+  },
+  plugins: [new HtmlWebpackPlugin()],
+};
+
+
+
 
 
 2. Paruosimas produkcijai - sugeneruojam optimalius failus sujungiant i viena ir pa.:
