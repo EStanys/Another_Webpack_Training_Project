@@ -8,13 +8,23 @@ module.exports = {
     // kuri faila paims webpackas kaip pagrindini
     main: path.resolve(__dirname, "./src/app.js"), //main: path.resolve(__dirname, - gaunam kelia musu kompiuteri nuo pat pradzios kur yra musu failas. Galima butu ir rankiniu budu nurodyt. PAgal nutylejima imtu webpack.config.js faila, jei toki turetume sukure ir nesplitine i dev ir build
   },
-  output: { filename: "bundle.js", path: path.resolve(__dirname, "dist"), clean: true }, // clean isvalo pries tai buvusia direktorija
+  output: {
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist"),
+    clean: true,
+    assetModuleFilename: "images/[name][ext]",
+  }, // clean isvalo pries tai buvusia direktorija
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     port: 8080,
   },
   module: {
     rules: [
+      // imgages
+      {
+        test: /\.(png|svg|jpe?g|gif)$/i,
+        type: "asset/resource",
+      },
       //css loader
       {
         test: /\.css$/i, //pritaikkm.css failams

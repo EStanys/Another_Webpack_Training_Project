@@ -84,8 +84,16 @@ kad atidaryti serveri naudojam: npx webpack serve --open
 
 
 
-IMG
+IMG - prie module, rules pridedam taisykle: 
+{
+        test: /\.(png|svg|jpe?g|gif)$/i,
+        type: "asset/resource",
+      },
 
+
+i output po clean ikeliam: assetModuleFilename: "images/[name][ext]", taip nurodysim paveiksleliu talpinimo vieta
+
+css minimize
 
 
 
