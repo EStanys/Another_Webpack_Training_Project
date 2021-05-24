@@ -34,8 +34,29 @@ output: { filename: "bundle.js", path: path.resolve(__dirname, "dist"), clean: t
 
 7. CSS  - pluginus instaliuojam: https://webpack.js.org/guides/asset-management/#loading-css
 npm install --save-dev style-loader css-loader
+prideti taisykle kad css failams naudoti css loader
 
-Babel
+8.Babel instaliuojam Babel-loader:https://webpack.js.org/loaders/babel-loader/ 
+
+npm install -D babel-loader @babel/core @babel/preset-env
+
+padarom taisykle: (visi js ir mjs failai naudos babel)
+module: {
+  rules: [
+    {
+      test: /\.m?js$/,
+      exclude: /(node_modules|bower_components)/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
+        }
+      }
+    }
+  ]
+}
+
+
 Dev server
 
 
