@@ -20,3 +20,5 @@ addImageTo(jpgImg);
 addImageTo(pngImg);
 
 console.log("greet fn:", greet("ist a monday today"));
+
+const blue = "green";

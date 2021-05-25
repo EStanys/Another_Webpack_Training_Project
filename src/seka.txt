@@ -197,3 +197,80 @@ devServer: {
     port: 8080,
     hot: true, // css reload nereloadinant html. pas mane veikia ir be to
   },
+
+
+13. ESLINT - pracheckina projekta ir paziuri ar yra kokiu netikslumu, neaiskumu ar nepanaudotu dalyku, kuriuos galim uzkomentuot istrint ar pan. Production faile naudosim, nes developinant nenorim, kad istisai klaidas rodytu https://webpack.js.org/plugins/eslint-webpack-plugin/#root
+
+Instaliuojam webpack linta: 
+npm install eslint-webpack-plugin --save-dev
+
+tada pati linta:
+npm install eslint --save-dev
+
+tada You should then set up a configuration file: (terminale irasyti)
+
+node ./node_modules/.bin/eslint --init arba jei neveikia tai be node priekyje
+
+tada issirenkiam viena is pasirinkimu 
+  To check syntax only
+  To check syntax and find problems
+❯ To check syntax, find problems, and enforce code style  
+
+✔ How would you like to use ESLint? · style
+? What type of modules does your project use? … 
+❯ JavaScript modules (import/export)
+  CommonJS (require/exports)
+  None of these
+
+  ? Which framework does your project use? … 
+  React
+  Vue.js
+❯ None of these
+
+? Does your project use TypeScript? › No / Yes
+
+? Where does your code run? …  (Press <space> to select, <a> to toggle all, <i> to invert selection)
+✔ Browser
+✔ Node
+
+
+❯ Use a popular style guide
+  Answer questions about your style
+  Inspect your JavaScript file(s) 
+
+populiarus:
+  Airbnb: https://github.com/airbnb/javascript
+  Standard: https://github.com/standard/standard
+  Google: https://github.com/google/eslint-config-google
+  XO: https://github.com/xojs/eslint-config-xo
+
+? What format do you want your config file to be in? … 
+❯ JavaScript
+  YAML
+  JSON
+
+eslint-config-airbnb-base@latest eslint@^5.16.0 || ^6.8.0 || ^7.2.0 eslint-plugin-import@^2.22.1
+? Would you like to install them now with npm? › No / Yes
+
+yes - instaliuojam reikaloingus plugins, kad airbnb veiktu stilius
+
+
+
+
+naudojimas: const ESLintPlugin = require('eslint-webpack-plugin');
+
+module.exports = {
+  // ...
+  plugins: [new ESLintPlugin(options)],
+  // ...
+};
+
+
+14. // post css plugin - kad pridetu reikalingus webkit pagal narsyle ir versija
+npm install --save-dev postcss postcss-loader postcss-preset-env
+
+
+.browserslistrc
+last 2 versions //imam paskutines 2 narsykliu versijas
+> 0.5% // bandom palaikyti 99.5% narsykliu 
+IE 9 // bandom prideti palaikyma internet explorer 9
