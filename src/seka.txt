@@ -140,6 +140,8 @@ isikeliam plug'ina i webpack :
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+ir const CssMinimizerPlugin = require('css-minimizer-webpack-plugin'); // minimizeris sutrauks css faila
+
 tada i module export plugins:
 plugins: [new MiniCssExtractPlugin()],
 
@@ -150,7 +152,17 @@ upgradint css loader:
         test: /.s?css$/, //pritaikkm.css failams
         use: [MiniCssExtractPlugin.loader, "css-loader"], // uzkraunam css
       },
+      
 
+po plugins idedam:
+
+optimization: {
+    minimizer: [
+      // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
+      // `...`,
+      new CssMinimizerPlugin(),
+    ],
+  },
 
 
 12. Pasikopijuojam webpack.dev.js ir pasidarom production faila webpack.prod.js. :

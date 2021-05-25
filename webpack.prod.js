@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin"); // iskvieciam plugina 
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 // css mimimizer:
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 module.exports = {
   optimization: {
     // [...]
@@ -74,4 +74,11 @@ module.exports = {
     }),
     new MiniCssExtractPlugin(),
   ],
+  optimization: {
+    minimizer: [
+      // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
+      // `...`,
+      new CssMinimizerPlugin(),
+    ],
+  },
 };

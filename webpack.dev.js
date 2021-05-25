@@ -1,5 +1,6 @@
 const path = require("path"); // node modulis dirbti su keliais iki failu
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // iskvieciam plugina html generuoti automatiskai kad butu galima
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 // css mimimizer:
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
