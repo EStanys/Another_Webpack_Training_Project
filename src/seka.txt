@@ -91,37 +91,96 @@ IMG - prie module, rules pridedam taisykle:
       },
 
 
-i output po clean ikeliam: assetModuleFilename: "images/[name][ext]", taip nurodysim paveiksleliu talpinimo vieta
-
-css minimize
+I output po clean ikeliam: assetModuleFilename: "images/[name][ext]", taip nurodysim paveiksleliu talpinimo vieta
 
 
+Parsisiunciam ImageMinimizerWebpackPlugin: https://webpack.js.org/plugins/image-minimizer-webpack-plugin/
+
+Instaliuojam plugin'a: npm install image-minimizer-webpack-plugin --save-dev
+
+img gali buti optimizuojant dviem budais:
+1.Lossless (without loss of quality).
+2. Lossy (with loss of quality).
+
+instaliuojam lossy:
+
+npm install imagemin-gifsicle imagemin-mozjpeg imagemin-pngquant imagemin-svgo --save-dev
+
+arba lossless:
+npm install imagemin-gifsicle imagemin-jpegtran imagemin-optipng imagemin-svgo --save-dev
+
+Webpac.dev.js faile iskvieciam plugin'a:
+
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+
+I plugins ikeliam: plugins: [
+
+    new ImageMinimizerPlugin({
+      minimizerOptions: {
+        // Lossless optimization with custom option
+        // Feel free to experiment with options for better result for you
+        plugins: [
+          ["gifsicle", { quality: true }],
+          ["mozjpeg", { quality: 50 }],
+          ["pngquant", { quality: [0.5, 0.7] }],
+          ["svgo"],
+        ],
+      },
+    }),
 
 
 
+11. CSS mimimize: https://webpack.js.org/plugins/css-minimizer-webpack-plugin/
+
+instaliuojam plugina: npm install css-minimizer-webpack-plugin --save-dev
+taip pat:
+npm install --save-dev mini-css-extract-plugin
+
+isikeliam plug'ina i webpack :
+
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+tada i module export plugins:
+plugins: [new MiniCssExtractPlugin()],
+
+
+upgradint css loader:
+//css loader
+      {
+        test: /.s?css$/, //pritaikkm.css failams
+        use: [MiniCssExtractPlugin.loader, "css-loader"], // uzkraunam css
+      },
 
 
 
+12. Pasikopijuojam webpack.dev.js ir pasidarom production faila webpack.prod.js. :
 
-2. Paruosimas produkcijai - sugeneruojam optimalius failus sujungiant i viena ir pa.:
-komanda: npx webpack --mode production
+pasidarom pakeitimus production faile:
 
+devtool: false, 
+mode: "production",
 
-pasidarem skriptus dev build ir start
+is development failo istrinam:
 
-norim idiegti html plugin: npm install --save-dev html-webpack-plugin
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin"); // naudosim tik productione
 
-susikuriam faila webpack.config.js .Cia gules visa webpack konfiguracija
+new ImageMinimizerPlugin({
+      minimizerOptions: {
+        // Lossless optimization with custom option
+        // Feel free to experiment with options for better result for you
+        plugins: [
+          ["gifsicle", { quality: true }],
+          ["mozjpeg", { quality: 50 }],
+          ["pngquant", { quality: [0.5, 0.7] }],
+          ["svgo"],
+        ],
+      },
+    }),
 
-Norim pajungt webpacui html plugina(webpack.config.js faile):
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
+taip pat:
 
-
-// prisideti post css plugin, kad pridetu reikalingus webkit pagal narsykle ir versija:
-npm i --save-dev postcss postcss-loader postcss-preset-env
-
-.browserslistrc
-last 2 versions // imampaskutines 2 narsykliu versija
-> 0.5% // bandom pa;aikyti 99.5% narsykliu
-IE9 // bandom prideti palaikyma internet explorer 9 narsykle
+devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    port: 8080,
+    hot: true, // css reload nereloadinant html. pas mane veikia ir be to
+  },

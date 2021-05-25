@@ -1,6 +1,6 @@
 const path = require("path"); // node modulis dirbti su keliais iki failu
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // iskvieciam plugina html generuoti automatiskai kad butu galima
-
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 // css mimimizer:
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -9,8 +9,8 @@ module.exports = {
     // [...]
     minimize: true,
   },
-  mode: "development",
-  devtool: "source-map", // galima matyti is kurio failo koks kodas atejo(consol.log'e tarkim, kad nerodytu kad atejo is main js)
+  mode: "production",
+  devtool: false, // galima matyti is kurio failo koks kodas atejo(consol.log'e tarkim, kad nerodytu kad atejo is main js)
   entry: {
     // kuri faila paims webpackas kaip pagrindini
     main: path.resolve(__dirname, "./src/app.js"), //main: path.resolve(__dirname, - gaunam kelia musu kompiuteri nuo pat pradzios kur yra musu failas. Galima butu ir rankiniu budu nurodyt. PAgal nutylejima imtu webpack.config.js faila, jei toki turetume sukure ir nesplitine i dev ir build
@@ -19,13 +19,9 @@ module.exports = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
-    assetModuleFilename: "images/[name][ext]", // nurodom paveiksleliu talpinimo vieta
+    assetModuleFilename: "images/[hash][ext]", // nurodom paveiksleliu talpinimo vieta//hash - pakeis paveiksleliu vardus i random
   }, // clean isvalo pries tai buvusia direktorija
-  devServer: {
-    contentBase: path.join(__dirname, "dist"),
-    port: 8080,
-    hot: true, // css reload nereloadinant html. pas mane veikia ir be to
-  },
+
   module: {
     rules: [
       // imgages
@@ -53,6 +49,19 @@ module.exports = {
   },
 
   plugins: [
+    new ImageMinimizerPlugin({
+      minimizerOptions: {
+        // Lossless optimization with custom option
+        // Feel free to experiment with options for better result for you
+        plugins: [
+          ["gifsicle", { quality: true }],
+          ["mozjpeg", { quality: 50 }],
+          ["pngquant", { quality: [0.5, 0.7] }],
+          ["svgo"],
+        ],
+      },
+    }),
+
     new HtmlWebpackPlugin({
       template: "/src/html/template.html", // nurodom kelia is kur pasiimt template pagal kuri kurs html faila dist foldery
       templateParameters: {
