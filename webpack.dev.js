@@ -1,27 +1,34 @@
-const path = require("path"); // node modulis dirbti su keliais iki failu
-const HtmlWebpackPlugin = require("html-webpack-plugin"); // iskvieciam plugina html generuoti automatiskai kad butu galima
+const path = require('path'); // node modulis dirbti su keliais iki failu
+// eslint-disable-next-line import/no-extraneous-dependencies
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // iskvieciam plugina html generuoti automatiskai kad butu galima
+// eslint-disable-next-line import/no-extraneous-dependencies
+const ESLintPlugin = require('eslint-webpack-plugin');
 
-// css mimimizer:
+// lint plugin options
+const lintOptions = {
+  context: path.resolve(__dirname),
+  fix: true,
+};
 
 module.exports = {
   optimization: {
     // [...]
     minimize: true,
   },
-  mode: "development",
-  devtool: "source-map", // galima matyti is kurio failo koks kodas atejo(consol.log'e tarkim, kad nerodytu kad atejo is main js)
+  mode: 'development',
+  devtool: 'source-map', // galima matyti is kurio failo koks kodas atejo(consol.log'e tarkim, kad nerodytu kad atejo is main js)
   entry: {
     // kuri faila paims webpackas kaip pagrindini
-    main: path.resolve(__dirname, "./src/app.js"), //main: path.resolve(__dirname, - gaunam kelia musu kompiuteri nuo pat pradzios kur yra musu failas. Galima butu ir rankiniu budu nurodyt. PAgal nutylejima imtu webpack.config.js faila, jei toki turetume sukure ir nesplitine i dev ir build
+    main: path.resolve(__dirname, './src/app.js'), // main: path.resolve(__dirname, - gaunam kelia musu kompiuteri nuo pat pradzios kur yra musu failas. Galima butu ir rankiniu budu nurodyt. PAgal nutylejima imtu webpack.config.js faila, jei toki turetume sukure ir nesplitine i dev ir build
   },
   output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
     clean: true,
-    assetModuleFilename: "images/[name][ext]", // nurodom paveiksleliu talpinimo vieta
+    assetModuleFilename: 'images/[name][ext]', // nurodom paveiksleliu talpinimo vieta
   }, // clean isvalo pries tai buvusia direktorija
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, 'dist'),
     port: 8080,
     hot: true, // css reload nereloadinant html. pas mane veikia ir be to
   },
@@ -30,21 +37,21 @@ module.exports = {
       // imgages
       {
         test: /\.(png|svg|jpe?g|gif)$/i,
-        type: "asset/resource",
+        type: 'asset/resource',
       },
-      //css loader
+      // css loader
       {
-        test: /.s?css$/, //pritaikkm.css failams
-        use: ["style-loader", "css-loader"], // uzkraunam css
+        test: /.s?css$/, // pritaikkm.css failams
+        use: ['style-loader', 'css-loader'], // uzkraunam css
       },
       // babel loader
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ["@babel/preset-env"],
+            presets: ['@babel/preset-env'],
           },
         },
       },
@@ -52,12 +59,14 @@ module.exports = {
   },
 
   plugins: [
+    new ESLintPlugin(lintOptions),
     new HtmlWebpackPlugin({
-      template: "/src/html/template.html", // nurodom kelia is kur pasiimt template pagal kuri kurs html faila dist foldery
+      template: '/src/html/template.html', // nurodom kelia is kur pasiimt template pagal kuri kurs html faila dist foldery
       templateParameters: {
-        title: "We now know Webpack", // ka irasysim cia atsivaizduos index html ten kur busim ideja <%= title%> template.html faile
+        title: 'We now know Webpack', // ka irasysim cia atsivaizduos index html ten kur busim ideja <%= title%> template.html faile
       },
       minify: {
+        // eslint-disable-next-line max-len
         removeComments: true, // sugeneruotam index.html nerodys komentaru musu parasytu template.html faile
         collapseWhitespace: false,
       },

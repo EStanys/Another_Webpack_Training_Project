@@ -4,7 +4,6 @@ const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 // css mimimizer:
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
   optimization: {
@@ -15,7 +14,7 @@ module.exports = {
   devtool: false, // galima matyti is kurio failo koks kodas atejo(consol.log'e tarkim, kad nerodytu kad atejo is main js)
   entry: {
     // kuri faila paims webpackas kaip pagrindini
-    main: path.resolve(__dirname, './src/app.js'), //main: path.resolve(__dirname, - gaunam kelia musu kompiuteri nuo pat pradzios kur yra musu failas. Galima butu ir rankiniu budu nurodyt. PAgal nutylejima imtu webpack.config.js faila, jei toki turetume sukure ir nesplitine i dev ir build
+    main: path.resolve(__dirname, './src/app.js'), // main: path.resolve(__dirname, - gaunam kelia musu kompiuteri nuo pat pradzios kur yra musu failas. Galima butu ir rankiniu budu nurodyt. PAgal nutylejima imtu webpack.config.js faila, jei toki turetume sukure ir nesplitine i dev ir build
   },
   output: {
     filename: 'bundle.js',
@@ -31,9 +30,9 @@ module.exports = {
         test: /\.(png|svg|jpe?g|gif)$/i,
         type: 'asset/resource',
       },
-      //css loader
+      // css loader
       {
-        test: /.s?css$/, //pritaikkm.css failams
+        test: /.s?css$/, // pritaikkm.css failams
         use: [MiniCssExtractPlugin.loader, 'css-loader'], // uzkraunam css
       },
       // babel loader
@@ -51,7 +50,6 @@ module.exports = {
   },
 
   plugins: [
-    new ESLintPlugin(options),
     new ImageMinimizerPlugin({
       minimizerOptions: {
         // Lossless optimization with custom option
