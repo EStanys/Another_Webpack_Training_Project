@@ -254,7 +254,16 @@ eslint-config-airbnb-base@latest eslint@^5.16.0 || ^6.8.0 || ^7.2.0 eslint-plugi
 
 yes - instaliuojam reikaloingus plugins, kad airbnb veiktu stilius
 
+tada einam i https://www.npmjs.com/package/eslint
 
+You can install ESLint using npm:
+$ npm install eslint --save-dev
+
+You should then set up a configuration file:
+$ ./node_modules/.bin/eslint --init
+
+After that, you can run ESLint on any file or directory like this:
+$ ./node_modules/.bin/eslint yourfile.js
 
 
 naudojimas: const ESLintPlugin = require('eslint-webpack-plugin');

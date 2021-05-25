@@ -1,17 +1,16 @@
-"use strict";
 // js
-import greet from "./js/greet.js";
+import greet from './js/greet';
 
 // css
-import "./css/main.css";
+import './css/main.css';
 
 // paveikslelis
 
-import jpgImg from "./img/M.jpg";
-import pngImg from "./img/U.png";
+import jpgImg from './img/M.jpg';
+import pngImg from './img/U.png';
 
 function addImageTo(importedImg) {
-  const imgEl = document.createElement("img");
+  const imgEl = document.createElement('img');
   imgEl.src = importedImg;
   document.body.append(imgEl);
 }
@@ -19,6 +18,4 @@ function addImageTo(importedImg) {
 addImageTo(jpgImg);
 addImageTo(pngImg);
 
-console.log("greet fn:", greet("ist a monday today"));
-
-const blue = "green";
+greet('ist a monday today');
