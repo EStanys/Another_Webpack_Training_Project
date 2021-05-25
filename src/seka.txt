@@ -164,6 +164,7 @@ optimization: {
     ],
   },
 
+situ plaginu reikes tik production dalyje
 
 12. Pasikopijuojam webpack.dev.js ir pasidarom production faila webpack.prod.js. :
 

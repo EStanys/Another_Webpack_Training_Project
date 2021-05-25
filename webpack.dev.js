@@ -1,9 +1,7 @@
 const path = require("path"); // node modulis dirbti su keliais iki failu
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // iskvieciam plugina html generuoti automatiskai kad butu galima
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 // css mimimizer:
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   optimization: {
@@ -37,7 +35,7 @@ module.exports = {
       //css loader
       {
         test: /.s?css$/, //pritaikkm.css failams
-        use: [MiniCssExtractPlugin.loader, "css-loader"], // uzkraunam css
+        use: ["style-loader", "css-loader"], // uzkraunam css
       },
       // babel loader
       {
@@ -64,6 +62,5 @@ module.exports = {
         collapseWhitespace: false,
       },
     }),
-    new MiniCssExtractPlugin(),
   ],
 };
